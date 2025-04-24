@@ -2,7 +2,6 @@ package com.example.carrentalspringboot.entity;
 
 import com.example.carrentalspringboot.enums.VehicleTypeEnum;
 import jakarta.persistence.*;
-import org.springframework.data.repository.cdi.Eager;
 
 import java.math.BigDecimal;
 import java.time.Year;
