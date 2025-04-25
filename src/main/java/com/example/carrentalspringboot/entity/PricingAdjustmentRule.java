@@ -7,7 +7,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
-public class PricingAdjustmentRule {
+public class PricingAdjustmentRule { //@TODO: remove unnecessary fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -17,20 +17,25 @@ public class PricingAdjustmentRule {
     private String maxAvailability;
     @Column(name = "adjustment_rate")
     private BigDecimal adjustmentRate;
-    @Column(name = "created_by")
-    private Integer createdBy;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "created_by", nullable = false)
+    private User createdBy;
     @Column(name = "created_at")
     private Timestamp createdAt;
+    //    @CreationTimestamp
+//    @Column(updatable = false)
+//    private LocalDateTime createdAt;
     private Boolean active;
     @Column(name = "start_date")
     private Date startDate;
+    //    private LocalDate startDate;
     @Column(name = "end_date")
     private Date endDate;
 
     public PricingAdjustmentRule() {
     }
 
-    public PricingAdjustmentRule(String minAvailability, String maxAvailability, BigDecimal adjustmentRate, Integer createdBy, Timestamp createdAt, Boolean active, Date startDate, Date endDate) {
+    public PricingAdjustmentRule(String minAvailability, String maxAvailability, BigDecimal adjustmentRate, User createdBy, Timestamp createdAt, Boolean active, Date startDate, Date endDate) {
         this.minAvailability = minAvailability;
         this.maxAvailability = maxAvailability;
         this.adjustmentRate = adjustmentRate;
@@ -69,11 +74,11 @@ public class PricingAdjustmentRule {
         this.adjustmentRate = adjustmentRate;
     }
 
-    public Integer getCreatedBy() {
+    public User getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(Integer createdBy) {
+    public void setCreatedBy(User createdBy) {
         this.createdBy = createdBy;
     }
 

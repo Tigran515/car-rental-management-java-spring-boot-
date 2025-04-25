@@ -1,29 +1,27 @@
 package com.example.carrentalspringboot.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
 @Entity
-public class Service { //@TODO: rename
+@Table(name = "addon")
+public class Addon { // @TODO: decide is it necessary to override equals() and hashCode()
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String name;
     private BigDecimal price;
 
-    public Service() {
+    public Addon() {
     }
 
-    public Service(String name, BigDecimal price) {
+    public Addon(String name, BigDecimal price) {
         this.name = name;
         this.price = price;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

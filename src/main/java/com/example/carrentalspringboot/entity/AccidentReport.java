@@ -16,24 +16,32 @@ public class AccidentReport {
     private Integer id;
     @Enumerated(EnumType.STRING)
     private AccidentTypeEnum type;
-    @Column(name = "customer_id")
-    private Integer customerId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id", nullable = false)
+    private User customer;
     @Enumerated(EnumType.STRING)
     private AccidentStatusEnum status;
-    @Column(name = "booking_id")
-    private Integer bookingId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "booking_id", nullable = false)
+    private Booking booking;
     private BigDecimal fee;
-    @Column(name = "manager_id")
-    private Integer managerId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "manager_id")
+    private User manager;
     @Column(name = "created_at")
-    private Timestamp created;
+    private Timestamp createdAt;
+    //    @CreationTimestamp
+//    @Column(updatable = false)
+//    private LocalDateTime createdAt;
     @Column(name = "updated_at")
     private Timestamp updated;
     private String notes;
 
+    //    @UpdateTimestamp
+//    private LocalDateTime updatedAt;
     public AccidentReport() {
     }
-//@TODO: add constructor with args
+
     public Integer getId() {
         return id;
     }
@@ -46,12 +54,12 @@ public class AccidentReport {
         this.type = type;
     }
 
-    public Integer getCustomerId() {
-        return customerId;
+    public User getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
+    public void setCustomer(User customer) {
+        this.customer = customer;
     }
 
     public AccidentStatusEnum getStatus() {
@@ -62,12 +70,12 @@ public class AccidentReport {
         this.status = status;
     }
 
-    public Integer getBookingId() {
-        return bookingId;
+    public Booking getBooking() {
+        return booking;
     }
 
-    public void setBookingId(Integer bookingId) {
-        this.bookingId = bookingId;
+    public void setBooking(Booking booking) {
+        this.booking = booking;
     }
 
     public BigDecimal getFee() {
@@ -78,20 +86,20 @@ public class AccidentReport {
         this.fee = fee;
     }
 
-    public Integer getManagerId() {
-        return managerId;
+    public User getManager() {
+        return manager;
     }
 
-    public void setManagerId(Integer managerId) {
-        this.managerId = managerId;
+    public void setManager(User manager) {
+        this.manager = manager;
     }
 
-    public Timestamp getCreated() {
-        return created;
+    public Timestamp getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated(Timestamp created) {
-        this.created = created;
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
     }
 
     public Timestamp getUpdated() {
