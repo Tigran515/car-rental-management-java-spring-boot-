@@ -1,38 +1,42 @@
 package com.example.carrentalspringboot.tool;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
+import com.example.carrentalspringboot.entity.Addon;
+import com.example.carrentalspringboot.entity.Booking;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 
 @Embeddable
 public class BookingAddonId implements Serializable { //@TODO: check and compare
-    @Column(name = "booking_id")
-    private Long bookingId;
-    @Column(name = "addon_id")
-    private Long addonId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "booking_id")
+    private Booking booking;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "addon_id")
+    private Addon addon;
 
     public BookingAddonId() {
     }
 
-    public BookingAddonId(Long bookingId, Long addonId) {
-        this.bookingId = bookingId;
-        this.addonId = addonId;
+    public BookingAddonId(Booking booking, Addon addon) {
+        this.booking = booking;
+        this.addon = addon;
     }
 
-    public Long getBookingId() {
-        return bookingId;
+    public Booking getBooking() {
+        return booking;
     }
 
-    public void setBookingId(Long bookingId) {
-        this.bookingId = bookingId;
+    public void setBooking(Booking booking) {
+        this.booking = booking;
     }
 
-    public Long getAddonId() {
-        return addonId;
+    public Addon getAddon() {
+        return addon;
     }
 
-    public void setAddonId(Long addonId) {
-        this.addonId = addonId;
+    public void setAddon(Addon addon) {
+        this.addon = addon;
     }
 }
