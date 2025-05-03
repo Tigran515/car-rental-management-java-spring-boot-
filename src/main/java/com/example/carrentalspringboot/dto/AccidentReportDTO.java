@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
-public class AccidentReportDTO {
+public class AccidentReportDTO { //@TODO: add validations
     private Integer id;
     private AccidentTypeEnum type;
     private Integer customerId;
